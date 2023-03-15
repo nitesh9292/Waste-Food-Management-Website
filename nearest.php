@@ -3,7 +3,12 @@ require("includes/common.php");
    if (!isset($_SESSION['email'])) {
        header('location: index.php');
       }
-   $em=$_SESSION['email'];	   
+   $em=$_SESSION['email'];
+   $ngo_name = $_SESSION['Name'];
+   $ngo_contact = $_SESSION['contact'];
+  //  echo $ngo_name;
+  
+   
 ?>
 
 <!DOCTYPE html>
@@ -147,6 +152,10 @@ require("includes/common.php");
            
               $call = circle_distance($v1,$v2,$l1,$l2);
 
+              // echo $em;
+              // echo $row['id'];
+              // echo $row['email'];
+
            
              
          
@@ -165,7 +174,16 @@ require("includes/common.php");
                                                             <?php echo  "<h7>pin : ".$row['pin'].".</h7>"; ?>                              </td>
                               <td style="border-bottom:double 2px black;" data-th="Distance" >  <?php echo round($call,2); ?> Kilometers   </td>
                               <!-- <td><center><button class="btn btn-primary request" data-food-id="<?php //echo $row['id']; ?>" data-donor-email="<?php// echo $row['email']; ?>">Request</button></center></td> -->
-                              <td><center><button class="btn btn-primary request" data-food-id="<?php echo $row['id']; ?>" data-donor-email="<?php echo $row['email']; ?>">Request</button>
+                              <td><center><form method="post" action="request_script.php">
+  <input type="hidden" name="food_id" value="<?php echo $row['id']; ?>">
+  <input type="hidden" name="food_image" value="<?php echo $row['image']; ?>">
+  <input type="hidden" name="food_name" value="<?php echo $row['description']; ?>">
+  <input type="hidden" name="ngo_name" value="<?php echo $ngo_name;?>">
+  <input type="hidden" name="ngo_contact" value="<?php echo $ngo_contact; ?>">
+  <input type="hidden" name="donor_email" value="<?php echo $row['email']; ?>">
+ <input type="hidden" name="ngo_email" value="<?php echo $em; ?>">
+  <button type="submit" name="request" class="btn btn-success">Request</button>
+</form>
 </center></td>
                             
                         </tr>
@@ -212,7 +230,7 @@ require("includes/common.php");
    });
 </script> -->
 
-<script>
+<!-- <script>
 $(document).ready(function() {
   $('.request').click(function() {
     $(this).closest('tr').remove();
@@ -234,7 +252,7 @@ $(document).ready(function() {
     // disable the button to prevent multiple requests
     $(this).prop('disabled', true);
   });
-});
+}); -->
 </script>
 
 

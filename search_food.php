@@ -10,6 +10,10 @@ if(isset($_POST['subm']))
     $l1 = $_POST['lats'];
     $l2 = $_POST['longs'];
     header("Location: nearest.php? lat=$l1&long=$l2");
+
+    $_SESSION['lats']=$_POST['lats'];
+    $_SESSION['longs']= $_POST['longs'];
+
     
    }
 
