@@ -1,134 +1,236 @@
+
 <?php
-include_once('connection_ngo.php');
+require("includes/common.php");
+$donor_email = $_SESSION['email'];
+// $sql = "SELECT * FROM food_requests WHERE donor_email = $donor_email AND status = 'pending'";
+// $result = mysqli_query($conn, $sql);
 
-
-
-$query = "SELECT * FROM users WHERE email='niteshjaiswal9292@gmail.com'" ;
-$result = mysqli_query($con,$query);
 ?>
 <!DOCTYPE html>
+<html lang="en" >
+<head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Easy Food Management</title>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+		<link href="css/table.css" rel="stylesheet">
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+  <meta charset="UTF-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+   .body{
+    background-image: url("img/mybg4.jpg");
+    width:100%;
+    height:100%;
+   }
+  
+  </style>
+ </head>
+<body class="body">
+
+  <?//php include("includes/header.php"); ?> 
+
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Donation</title>
-     <!-- font awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <script src="https://example.com/fontawesome/v6.2.0/js/all.js" ></script>
-  
+  <style>
+    #count{
+        position:relative;
+        top:-10px;
+        left:-10px;
+    }
+  </style>
+</head>
+<body>
+    
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>
+           
+            <a class="navbar-brand" href="index.php">Waste Food Management</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <?php
+                if (isset($_SESSION['email'])) {
+                    ?>
+					   <li><a href="notifications.php" ><i  class="fa-regular fa-bell"></i><span class="badge badge-danger" id="count">4</span> Notification </a></li>
+                       <li><a href="home.php" >Welcome, <?php echo $_SESSION['email'];?> </a></li>
+                        <li><a href="my_donation.php" >My Donation</a></li>  
+                       
+                        <li><a href="logout.php">Logout</a></li>
+                    <?php
+                } else {
+                    ?>
+                    <li><a href="signupboth.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="signupboth.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <?php
+                    }
+                    ?>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</body>
+</html>
 
-<!-- google icons -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<div class="cd-hero">  
+                <div class="cd-full-width">       
+                    <div class="container">
+                       <div class="col-md-11 ">
+	                     <div class="col-md-5 col-md-offset-4">
+                         <br>
+                         <br>
+                         <br>
+                         <br>
+                         <div>
+                         <div>
+                         <h2 style="color:red;"><center>My Donations</center></h2>
+                        </div>
+<?php
 
  
-  <!-- google fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700;900&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
- 
-  <!-- bootstrap Script -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+
+//$sql = "SELECT id,(3959 * acos( cos( radians( $v1 )) * cos( radian( lat )) * cos( radians( lng ) - radians($v2)
+  //      ) + sin(radians($v1)) * sin( radians( lat ) ) ) ) AS distance FROM markers HAVING diatnace < 55 ORDER BY distance LIMIT 0,60";
+
+  $sql = "SELECT * FROM uploads WHERE email = '{$_SESSION['email']}'";
+
   
-  <!-- css stylesheet -->
+  $result = mysqli_query($con, $sql);
   
-  <link rel="stylesheet" href="ngo_page.css">
+  if (!$result) {
+    die("Error: " . mysqli_error($con));
+  }
+  ?>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<table class="rwd-table">
+  <tr>
+    <th><center>Food id</center></th>
+    <th><center>Food image</center></th>
+    <th><center>Description</center></th>
+    <th><center>Name</center></th>
+    <th><center>Email</center></th>
+    <th><center>Address</center></th>
+   
+   
+    
+  </tr>
 
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <?php
+while ($row = mysqli_fetch_assoc($result)) {
 
+      
+           
+
+              // echo $em;
+              // echo $row['id'];
+              // echo $row['email'];
+
+           
+             
+         
+         
+                     
+              ?>
+                         <tr>
+                             <td data-th="Food id">            <?php echo "<h7>".$row['id']."</h7>"; ?>  
+                              <td data-th="Food Image" class="img-responsive">     <?php echo "<img width='200' height='200' src='uploaded images/".$row['image']."'  >"; ?>               </td>
+                              
+                              <td  data-th="Description">    <?php echo "<h7>".$row['description']."</h7>"; ?>  
+                              <td  data-th="name">    <?php echo "<h7>".$row['name']."</h7>"; ?>                           </td>
+                              <td  data-th="email">    <?php echo "<h7>".$row['email']."</h7>"; ?>  
+                              <td  data-th="Address"> 
+                                                            <?php echo  "<h7>house no : ".$row['house'].",</h7>";?> 
+                                                            <?php echo  "<h7>  ".$row['colony'].",</h7>";?>
+                                                            <?php echo  "<h7>pin : ".$row['pin'].".</h7>"; ?>                              </td>                           </td>
+                           
+</center></td>
+                            
+                        </tr>
+     
+             <?php  
+            }
+  
+       ?>
+          </table>
+          </div>
+                   </div>
+                 </div>
+               </div>
+            </div>
+                </div>
+            </div>                   
+         </div>
+               </li> 
+             </ul>
+  </body> 
+
+<!-- partial -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="css/script.js"></script>
+
+ <?php include("includes/footer.php"); ?>
+    <?php include("includes/jscript.php"); ?>
+<!-- 
 <script>
- $(document).ready(function()
-        {
-            $(".accept").click(function()
-            {
-                alert("Donation request is accepted");
+   $(document).ready(function()
+   {
+      $('.btn').on('click',function()
+      {
+         $(this).closest("tr").remove();
+      })
+   });
+</script> -->
 
-            })
-        })
+<!-- <script>
+$(document).ready(function() {
+  $('.request').click(function() {
+    $(this).closest('tr').remove();
+    // get the food ID and donor email from the data attributes
+    var food_id = $(this).data('food-id');
+    var donor_email = $(this).data('donor-email');
+    var ngo_email = $(this).data('ngo-email');
+    console.log(food_id);
+    console.log(donor_email);
+    console.log(ngo_email);
 
-        $(document).ready(function()
-        {
-            $(".decline").click(function()
-            {
-                alert("Donation request is rejected");
+    // send a notification to the donor
+    var message = "Your food item with ID " + food_id + " has been requested by an NGO.";
+    var subject = "Food Donation Request";
+    var body = "Dear donor,\n\n" + message + "\n\nBest regards,\nThe Food Donation Team";
+    var mailto_link = "mailto:" + donor_email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    window.location.href = mailto_link;
 
-            })
-        })       
-
+    // disable the button to prevent multiple requests
+    $(this).prop('disabled', true);
+  });
+}); -->
 </script>
 
 
-</head>
-<body>
-    <!-- <section id="title">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="ngo_home.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnLdL9soBetW8PzV4u97lugAc_7raiDIENqg&usqp=CAU" alt="" class="logo"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Status</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="https://forms.gle/n8r1pan9qWnqzvTK6">Contact us</a>
-                  </li>
-                 
-                </ul>
-              </div>
-            </div>
-          </nav>
-    </section> -->
-
-
-
-      <h2 style="text-align: center">MY Donation</h2>
-
-    <table  style = " text-align: center; width: 600px; line-heiight:400px;" >
-      
-      <tr >
-        <th>ID</th></th>
-        <th>Donor's Name</th>
-        <th>Email</th>
-        <th>Type of food</th>
-        <th>serves</th>
-        <th>Date of Cooking</th>
-        <th>Time of Cooking</th>
-        <th>Address</th>
-        <th>Pincode</th>
-        
-      </tr>
-      <?php   while($rows = mysqli_fetch_assoc($result))
-      {
-        ?>
-       
-        <tr>
-          <td><?php echo $rows['id'];?></td>
-          <td><?php echo $rows['name'];?></td>
-          <td><?php echo $rows['email'];?></td>
-          <td><?php echo $rows['food'];?></td>
-          <td><?php echo $rows['serves'];?></td>
-          <td><?php echo $rows['cooked_date'];?></td>
-          <td><?php echo $rows['cooked_time'];?></td>
-          <td><?php echo $rows['address'];?></td>
-          <td><?php echo $rows['pincode'];?></td>
-          
-        </tr>
-           <?php 
-      }
-      ?>
-      
-    </table>
-
-   
-  
 </body>
 </html>

@@ -14,9 +14,11 @@ if(isset($_POST['request']))
     $donor_email = $_POST['donor_email'];
     $query1 = "INSERT INTO food_requests(food_id,image,food_name,ngo_name,ngo_contact,ngo_email,donor_email,status) 
     VALUES 
-('" . $food_id . "','" . $food_image . "','" . $food_name . "','" . $ngo_name . "','" . $ngo_contact . "','" .$ngo_email . "','" .$donor_email . "','pending')";
+('" . $food_id . "','" . $food_image . "','" . $food_name . "','" . $ngo_name . "','" . $ngo_contact . "','" . $ngo_email . "','" .$donor_email . "','pending')";
 
 mysqli_query($con, $query1) or die(mysqli_error($con));
+$_SESSION['status']="Reuest sent successfully";
+$_SESSION['status_code']="success";
 header('location: request_sent.php');
 
     

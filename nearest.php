@@ -7,6 +7,7 @@ require("includes/common.php");
    $ngo_name = $_SESSION['Name'];
    $ngo_contact = $_SESSION['contact'];
   //  echo $ngo_name;
+  // echo $em;
   
    
 ?>
@@ -81,7 +82,7 @@ require("includes/common.php");
 					   <li><a href="#" ><i  class="fa-regular fa-bell"></i><span class="badge badge-danger" id="count">4</span> Notification </a></li>
                        <li><a href="home.php" >Welcome, <?php echo $_SESSION['email'];?> </a></li>
                         <li><a href="search_food.php" >Search Food</a></li>  
-                        <li><a href="received.php" >Received Food</a></li>
+                        <!-- <li><a href="received.php" >Received Food</a></li> -->
                         <li><a href="logout.php">Logout</a></li>
                     <?php
                 } else {
@@ -122,7 +123,7 @@ require("includes/common.php");
 //$sql = "SELECT id,(3959 * acos( cos( radians( $v1 )) * cos( radian( lat )) * cos( radians( lng ) - radians($v2)
   //      ) + sin(radians($v1)) * sin( radians( lat ) ) ) ) AS distance FROM markers HAVING diatnace < 55 ORDER BY distance LIMIT 0,60";
 
-  $sql = "SELECT * from uploads ORDER BY cooked_time ";
+  $sql = "SELECT * from uploads ";
   $res = mysqli_query($con, $sql);
   $row = mysqli_num_rows($res);
 

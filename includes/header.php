@@ -33,7 +33,7 @@
                 <?php
                 if (isset($_SESSION['email'])) {
                     ?>
-					   <li><a href="#" ><i  class="fa-regular fa-bell"></i><span class="badge badge-danger" id="count">4</span> Notification </a></li>
+					   <li><a href="notifications.php" ><i  class="fa-regular fa-bell"></i><span class="badge badge-danger" id="count">4</span> Notification </a></li>
                        <li><a href="home.php" >Welcome, <?php echo $_SESSION['email'];?> </a></li>
                         <li><a href="search_food.php" >Search Food</a></li>  
                         <li><a href="#" >Setting</a></li>
