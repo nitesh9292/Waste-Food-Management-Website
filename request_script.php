@@ -4,7 +4,7 @@ require("includes/common.php");
 
 if(isset($_POST['request']))
    {
-    $ngo_email= $_SESSION['ngo_email'];
+    $ngo_email= $_POST['ngo_email'];
     $food_id = $_POST['food_id'];
     $food_image = $_POST['food_image'];
     $food_name = $_POST['food_name'];
